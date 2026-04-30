@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sverige-Kollen | Inrikes & Historik</title>
+    <link rel="stylesheet" href="../styles/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">Sverige-Kollen</div>
+        <div class="search-container">
+            <input type="text" placeholder="Sök land..." id="searchInput">
+            <button onclick="checkSearch()">🔍</button>
+        </div>
+        <button class="menu-toggle">☰</button>
+        <ul class="menu">
+            <li><a href="../index.html">Hem</a></li>
+            <li><a href="inrikes.html">Inrikes</a></li>
+            <li><a href="samhall.html">Samhälle</a></li>
+            <li><a href="kontakt.html">Kontakt</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <div class="news-grid">
+            <div class="main-content">
+                <article class="featured-article" id="mainArticle">
+                    <span class="badge" id="articleBadge">Sökfunktion</span>
+                    <h1 id="articleTitle">Sök om Iran, Afghanistan, Pakistan och USA historia</h1>
+                    <p id="articleText">Använd sökfältet ovan för att få fram historisk bakgrund och viktig information om länderna. Skriv namnet på landet och klicka på förstoringsglaset för att läsa mer.</p>
+                </article>
+            </div>
+
+            <aside class="sidebar">
+                <h3>Instruktion</h3>
+                <div id="wikiSummary">
+                    <p style="font-size: 0.85rem; color: #888;">Du kan söka på följande länder för att se deras historia: 
+                        <br><br>• Iran 
+                        <br>• Afghanistan 
+                        <br>• Pakistan 
+                        <br>• USA
+                    </p>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <script>
+        const countryData = {
+            "usa": {
+                title: "USA:s Historia",
+                text: "USA grundades 1776 efter självständighetsförklaringen från Storbritannien. Landet har genomgått en snabb expansion, ett inbördeskrig och blev under 1900-talet en global supermakt. Idag präglas USA:s historia av dess roll i internationell politik och teknologisk utveckling.",
+                badge: "Wikipedia-fakta"
+            },
+            "iran": {
+                title: "Irans Historia",
+                text: "Iran, tidigare känt som Persien, har en av världens äldsta kontinuerliga civilisationer. Från Akemeniderriket till den islamiska revolutionen 1979 har landet varit en central punkt för kultur, vetenskap och politik i Mellanöstern.",
+                badge: "Wikipedia-fakta"
+            },
+            "pakistan": {
+                title: "Pakistans Historia",
+                text: "Pakistan bildades 1947 i samband med delningen av Brittiska Indien. Landet har en rik kultur som sträcker sig tillbaka till Induskulturen. Sedan självständigheten har Pakistan spelat en viktig geopolitisk roll i Sydasien.",
+                badge: "Wikipedia-fakta"
+            },
+            "afghanistan": {
+                title: "Afghanistans Historia",
+                text: "Afghanistan har historiskt sett varit en mötesplats för olika civilisationer längs Sidenvägen. Landet har en komplex historia av motstånd mot stormakter och strävan efter intern stabilitet, vilket format dess unika nationella identitet.",
+                badge: "Wikipedia-fakta"
+            }
+        };
+
+        function checkSearch() {
+            const input = document.getElementById('searchInput').value.toLowerCase().trim();
+            const title = document.getElementById('articleTitle');
+            const text = document.getElementById('articleText');
+            const badge = document.getElementById('articleBadge');
+
+            if (countryData[input]) {
+                const data = countryData[input];
+                title.innerText = data.title;
+                text.innerText = data.text;
+                badge.innerText = data.badge;
+                
+                document.getElementById('mainArticle').style.borderLeft = "5px solid #ffcc00";
+            } else {
+                alert("Ingen historik hittades för '" + input + "'. Testa att söka på Iran, Afghanistan, Pakistan eller USA.");
+            }
+        }
+    </script>
+    <script src="../scripts/menutoggle.js"></script>
+</body>
+</html>
